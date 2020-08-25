@@ -9,6 +9,30 @@ var createTask = function(taskText, taskDate, taskList) {
   var taskP = $("<p>")
     .addClass("m-1")
     .text(taskText);
+    $(".list-group").on("blur", "textarea", function() {
+      // get the textarea's current value/text
+var text = $(this)
+.val()
+.trim();
+
+// get the parent ul's id attribute
+var status = $(this)
+.closest(".list-group")
+.attr("id")
+.replace("list-", "");
+
+// get the task's position in the list of other li elements
+var index = $(this)
+.closest(".list-group-item")
+.index();
+// recreate p element
+var taskP = $("<p>")
+  .addClass("m-1")
+  .text(text);
+  // replace textarea with p element
+$(this).replaceWith(taskP);
+
+    });
 
   // append span and p element to parent li
   taskLi.append(taskSpan, taskP);
@@ -44,6 +68,17 @@ var loadTasks = function() {
 var saveTasks = function() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
+$(".list-group").on("click", "p", function() {
+  var text = $(this)
+  .text()
+  .trim();
+
+  var textInput = $("<textarea>")
+  .addClass("form-control")
+  .val(text);
+  $(this).replaceWith(textInput);
+  textInput.trigger("focus");
+});
 
 
 
@@ -79,7 +114,7 @@ $("#task-form-modal .btn-primary").click(function() {
     });
 
     saveTasks();
-  }
+  }  
 });
 
 // remove all tasks

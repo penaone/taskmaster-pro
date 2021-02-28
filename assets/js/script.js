@@ -145,7 +145,7 @@ $("#trash").droppable({
 // convert text field into a jquery date picker
 $("#modalDueDate").datepicker({
   // force user to select a future date
-  minDate: 1
+  minDate: 0
 });
 
 // modal was triggered
@@ -240,7 +240,7 @@ $(".list-group").on("click", "span", function() {
 
   // enable jquery ui date picker
   dateInput.datepicker({
-    minDate: 1,
+    minDate: 0,
     onClose: function() {
       // when calendar is closed, force a "change" event
       $(this).trigger("change");

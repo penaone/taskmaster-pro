@@ -144,8 +144,8 @@ $("#trash").droppable({
 
 // convert text field into a jquery date picker
 $("#modalDueDate").datepicker({
-  // force user to select a future date
-  minDate: 1
+  // force user to pick a date from today forward
+  minDate: 0
 });
 
 // modal was triggered
